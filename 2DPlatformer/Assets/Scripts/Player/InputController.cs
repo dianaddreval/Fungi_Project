@@ -1,21 +1,15 @@
+using System;
 using UnityEngine;
 
 public class InputController : MonoBehaviour
 {
-    private float _horizontalInput;
-    
     void Update()
     {
-        _horizontalInput = Input.GetAxis("Horizontal");
+        Player.Instance.Move(Input.GetAxisRaw("Horizontal"));
         
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Player.Instance.Jump();
         }
-    }
-
-    void FixedUpdate()
-    {
-        Player.Instance.Move(_horizontalInput);
     }
 }
