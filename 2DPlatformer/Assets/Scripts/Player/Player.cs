@@ -2,11 +2,12 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] private float _speed = 3f;
-    [SerializeField] private float _jumpForce = 5f;
+    [SerializeField] private float _speed = 4f;
+    [SerializeField] private float _jumpForce = 7f;
     private bool _isGround;
     private int _jumpCount;
-    private bool _isFalling = false;
+    private bool _isFalling;
+    private bool _isDoubleJump;
     
     private Ray _ray;
     [SerializeField] private float _groundCheckRadius = 0.5f;
@@ -19,6 +20,18 @@ public class Player : MonoBehaviour
     public static Player Instance;
 
     private void Awake() => Instance = this;
+
+
+
+    private void OnEnable()
+    {
+        Star.OnStarDoubleJump += DoubleJump;
+    }
+
+    private void OnDisable()
+    {
+        Star.OnStarDoubleJump -= DoubleJump;
+    }
     
     void Start()
     {
@@ -53,6 +66,11 @@ public class Player : MonoBehaviour
         }
         
         _animator.SetTrigger("Jump");
+    }
+
+    private void DoubleJump(bool obj)
+    {
+        _isDoubleJump = obj;
     }
 
     private void VerticalSpeed()
