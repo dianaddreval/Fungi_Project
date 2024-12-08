@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class NewLevel : MonoBehaviour
+public class SwitchTrigger : MonoBehaviour
 {
     
     public static Action OnDoorOpen;

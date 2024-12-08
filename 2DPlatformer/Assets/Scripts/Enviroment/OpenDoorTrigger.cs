@@ -4,12 +4,12 @@ public class OpenDoorTrigger : MonoBehaviour
 {
     private void OnEnable()
     {
-        NewLevel.OnDoorOpen += isDoorOpen;
+        SwitchTrigger.OnDoorOpen += isDoorOpen;
     }
 
     private void OnDisable()
     {
-        NewLevel.OnDoorOpen -= isDoorOpen;
+        SwitchTrigger.OnDoorOpen -= isDoorOpen;
     }
 
     private void isDoorOpen()
