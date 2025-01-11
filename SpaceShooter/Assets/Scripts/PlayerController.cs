@@ -13,11 +13,25 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _tiltAngle = 4.0f;
     [SerializeField] private Boundary _boundary;
     
+    [SerializeField] private GameObject _shotPrefab;
+    [SerializeField] private Transform _shotSpawn;
+    [SerializeField] private float _fireRate = 1.0f;
+    private float _nextFire;
+    
     private Rigidbody _rigidbody;
     
     private void Start()
     {
         _rigidbody = GetComponent<Rigidbody>();
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space) && Time.time > _nextFire)
+        {
+            _nextFire = Time.time + _fireRate;
+            Instantiate(_shotPrefab, _shotSpawn.position, _shotSpawn.rotation);
+        }
     }
     
     private void FixedUpdate()
